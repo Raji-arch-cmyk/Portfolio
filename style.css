@@ -234,7 +234,7 @@ textarea {
 }
 
 .about-section .section-heading h2 {
-    font-size: clamp(3.4rem, 6vw, 5.5rem);
+    font-size: clamp(3.2rem, 6vw, 6.2rem);
 }
 
 em {
@@ -535,7 +535,7 @@ em {
 }
 
 .mobile-section-label {
-    display: none;
+    display: block;
 }
 
 .heading-row {
@@ -904,10 +904,42 @@ em {
    Contact
 ========================= */
 
-.contact-info > p {
+.contact-intro {
+    align-items: center;
     color: var(--muted);
-    font-size: 1.05rem;
+    display: flex;
+    font-size: 1.25rem;
     max-width: 340px;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.contact-copy {
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+    width: 100%;
+}
+
+.contact-line {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    min-width: 0;
+    width: 100%;
+}
+
+.contact-value {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.contact-icon {
+    display: block;
+    flex: 0 0 24px;
+    height: 24px;
+    object-fit: contain;
+    width: 24px;
 }
 
 .contact-details {
@@ -942,6 +974,24 @@ em {
 
 .contact-heading {
     margin-top: 18px;
+}
+
+.contact-heading h2 {
+    font-size: clamp(3.4rem, 10vw, 6.5rem);
+}
+
+.contact-heading h2 em {
+    display: block;
+}
+
+@media (min-width: 901px) {
+    .section-heading h2 {
+        white-space: nowrap;
+    }
+
+    .contact-heading h2 {
+        white-space: normal;
+    }
 }
 
 .contact-form-card {
@@ -1161,6 +1211,19 @@ em {
 
     .section-heading h2 {
         margin-bottom: 40px;
+    }
+
+    .about-section .section-heading h2 {
+        font-size: clamp(2.2rem, 3.2vw, 3.2rem);
+    }
+
+    .contact-heading h2 {
+        font-size: clamp(1.8rem, 9vw, 3.4rem);
+        white-space: nowrap;
+    }
+
+    .contact-heading h2 em {
+        display: inline;
     }
 
     .heading-row {
