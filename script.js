@@ -1,177 +1,78 @@
-const menuToggle = document.querySelector("#menu-toggle");
-const navLinks = document.querySelector("#nav-links");
-const navItems = document.querySelectorAll(".nav-links a");
+/* ========================================
+   3D PROFILE CARD
+======================================== */
 
-menuToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", isOpen);
-    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
-});
+const profileCard = document.getElementById("profileCard");
 
-navItems.forEach((item) => {
-    item.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation menu");
-        navItems.forEach((link) => link.classList.remove("active"));
-        item.classList.add("active");
-    });
-});
+if (profileCard) {
 
+    profileCard.addEventListener("mousemove", function (event) {
 
-/* =========================
-   Certificate Viewer
-========================= */
+        const rect = profileCard.getBoundingClientRect();
 
-const certificateImages = document.querySelectorAll(
-    ".certificate-preview"
-);
+        // Mouse position inside the card
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
 
-const certificateViewer = document.getElementById(
-    "certificateViewer"
-);
+        // Convert position to percentage
+        const xPercent = mouseX / rect.width;
+        const yPercent = mouseY / rect.height;
 
-const certificateViewerImage = document.getElementById(
-    "certificateViewerImage"
-);
+        // Center mouse position around 0
+        const x = xPercent - 0.5;
+        const y = yPercent - 0.5;
 
-const certificateClose = document.getElementById(
-    "certificateClose"
-);
+        // Maximum rotation
+        const rotateY = x * 18;
+        const rotateX = y * -18;
 
-const certificatePrev = document.getElementById(
-    "certificatePrev"
-);
+        // Sideways movement
+        const moveX = x * 12;
+        const moveY = y * 8;
 
-const certificateNext = document.getElementById(
-    "certificateNext"
-);
+        // Apply 3D movement
+        profileCard.style.transform = `
+            perspective(1000px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            translateX(${moveX}px)
+            translateY(${moveY}px)
+            scale(1.03)
+        `;
 
-let currentCertificate = 0;
+        // Move the light to the mouse
+        profileCard.style.setProperty(
+            "--mouse-x",
+            `${mouseX}px`
+        );
 
-
-/* Open Certificate */
-
-function openCertificate(index) {
-
-    currentCertificate = index;
-
-    certificateViewerImage.src =
-        certificateImages[currentCertificate].src;
-
-    certificateViewerImage.alt =
-        certificateImages[currentCertificate].alt;
-
-    certificateViewer.classList.add("active");
-
-    document.body.style.overflow = "hidden";
-}
-
-
-/* Close Certificate */
-
-function closeCertificate() {
-
-    certificateViewer.classList.remove("active");
-
-    document.body.style.overflow = "";
-}
-
-
-/* Previous Certificate */
-
-function showPreviousCertificate() {
-
-    currentCertificate--;
-
-    if (currentCertificate < 0) {
-        currentCertificate = certificateImages.length - 1;
-    }
-
-    certificateViewerImage.src =
-        certificateImages[currentCertificate].src;
-
-    certificateViewerImage.alt =
-        certificateImages[currentCertificate].alt;
-}
-
-
-/* Next Certificate */
-
-function showNextCertificate() {
-
-    currentCertificate++;
-
-    if (currentCertificate >= certificateImages.length) {
-        currentCertificate = 0;
-    }
-
-    certificateViewerImage.src =
-        certificateImages[currentCertificate].src;
-
-    certificateViewerImage.alt =
-        certificateImages[currentCertificate].alt;
-}
-
-
-/* Click Certificate */
-
-certificateImages.forEach((image, index) => {
-
-    image.addEventListener("click", () => {
-        openCertificate(index);
+        profileCard.style.setProperty(
+            "--mouse-y",
+            `${mouseY}px`
+        );
     });
 
-});
 
+    // When mouse leaves the card
+    profileCard.addEventListener("mouseleave", function () {
 
-/* Buttons */
+        profileCard.style.transform = `
+            perspective(1000px)
+            rotateX(0deg)
+            rotateY(0deg)
+            translateX(0)
+            translateY(0)
+            scale(1)
+        `;
 
-certificateClose.addEventListener(
-    "click",
-    closeCertificate
-);
+        profileCard.style.setProperty(
+            "--mouse-x",
+            "50%"
+        );
 
-certificatePrev.addEventListener(
-    "click",
-    showPreviousCertificate
-);
-
-certificateNext.addEventListener(
-    "click",
-    showNextCertificate
-);
-
-
-/* Keyboard Navigation */
-
-document.addEventListener("keydown", (event) => {
-
-    if (!certificateViewer.classList.contains("active")) {
-        return;
-    }
-
-    if (event.key === "Escape") {
-        closeCertificate();
-    }
-
-    if (event.key === "ArrowLeft") {
-        showPreviousCertificate();
-    }
-
-    if (event.key === "ArrowRight") {
-        showNextCertificate();
-    }
-
-});
-
-
-/* Click Outside Image */
-
-certificateViewer.addEventListener("click", (event) => {
-
-    if (event.target === certificateViewer) {
-        closeCertificate();
-    }
-
-});
+        profileCard.style.setProperty(
+            "--mouse-y",
+            "50%"
+        );
+    });
+}
