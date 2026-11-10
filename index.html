@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet"
     >
 
@@ -33,6 +32,11 @@
 
 
 <body>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" aria-hidden="true">
+        <span id="scrollProgressBar"></span>
+    </div>
 
     <!-- =========================
          NAVBAR
@@ -111,70 +115,91 @@
 
         <section
             id="home"
-            class="hero page-section d-flex align-items-center min-vh-100"
+            class="hero page-section"
+            aria-label="Introduction"
         >
 
-            <div class="container hero-layout">
+            <!-- Giant background word -->
+            <div
+                class="hero-bg-word"
+                aria-hidden="true"
+            >
+                PORTFOLIO
+            </div>
 
-                <!-- Profile Image -->
-                <div class="hero-image position-relative" id="profileCard">
+
+
+
+
+            <!-- Headshot (foreground, centered over the background word) -->
+            <div class="hero-stage">
+
+                <div
+                    class="hero-photo"
+                    id="profileCard"
+                >
 
                     <img
-                        src="assets/me.jpeg"
+                        src="assets/me1.png"
                         alt="Portrait of Harvey Portez"
                     >
 
-                    <div class="image-note">
-                        Based in the Philippines
-                        <span></span>
-                    </div>
-
                 </div>
 
-
-                <!-- Hero Content -->
-                <div class="hero-content">
-
-                    <p class="eyebrow">
-
-                    </p>
-
-                    <h1>
-                        Harvey<br>
-                        <em>Portez.</em>
-                    </h1>
-
-                    <h2>
-                        Full Stack Web Developer
-                    </h2>
-
-                    <p class="hero-description">
-                        I build practical web solutions that make work clearer, faster, and easier for real people and businesses.
-                    </p>
+            </div>
 
 
-                    <!-- Hero Buttons -->
-                    <div class="hero-buttons">
+            <!-- Hero Content (left) -->
+            <div class="hero-copy">
 
-                        <a
-                            href="#projects"
-                            class="button button-dark"
-                        >
-                            See My Work
-                            <span>↗</span>
-                        </a>
+                <p class="hero-greeting">
+                    Hey. I&rsquo;m
+                </p>
 
-                        <a
-                            href="#contact"
-                            class="button button-light"
-                        >
-                            Let&apos;s Work Together
-                        </a>
+                <h1>
+                    Harvey Portez.
+                </h1>
 
-                    </div>
+                <p class="hero-tagline">
+                    Building Real Systems that solves real-world problems.
+                </p>
 
-                </div>
+            </div>
 
+
+            <!-- Hero Buttons (right side) -->
+            <div class="hero-buttons">
+
+                <a
+                    href="#projects"
+                    class="button button-dark"
+                >
+                    See My Work
+                    <span>&#8599;</span>
+                </a>
+
+                <a
+                    href="#contact"
+                    class="button button-light"
+                >
+                    Let&rsquo;s Work Together
+                </a>
+
+            </div>
+
+
+            <!-- Role Card (bottom right, overlapping the photo) -->
+            <div class="hero-role-card">
+                <strong>Full Stack Web Developer</strong>
+                <span>Creative Digital Builder</span>
+            </div>
+
+
+
+            <!-- Location (bottom left) -->
+            <div class="hero-location">
+                <span>Based in the Philippines</span>
+                <span class="location-accent">Please Hire me!!!</span>
             </div>
 
 
@@ -184,11 +209,10 @@
                 aria-hidden="true"
             >
                 Scroll to explore
-                <span>↓</span>
+                <span>&#8595;</span>
             </div>
 
         </section>
-
 
         <!-- =========================
              ABOUT
@@ -492,7 +516,14 @@
             <div class="project-grid">
 
                     <!-- Completed Project -->
-                    <article class="project-card">
+                    <article
+                        class="project-card"
+                        data-title="Satu-Hati Farm and Resort Website"
+                        data-description="Helps customers quickly find information about the resort's services, amenities, and contact details through a single accessible website."
+                        data-stack="PHP / CSS / JavaScript"
+                        data-status="Live"
+                        data-link="https://cozy-cassata-9dfa67.netlify.app/"
+                    >
 
                         <div class="project-visual visual-three d-flex align-items-center justify-content-center overflow-hidden position-relative">
 
@@ -545,7 +576,13 @@
                     </article>
 
                 <!-- iAssist Mercedes -->
-                    <article class="project-card">
+                    <article
+                        class="project-card"
+                        data-title="iAssist Mercedes"
+                        data-description="A centralized system for managing AICS beneficiaries, assistance, and requirements, helping MSWDO staff organize records, monitor applications, and access information more efficiently."
+                        data-stack="PHP / Laravel / Tailwind CSS / MySQL / JavaScript"
+                        data-status="In progress"
+                    >
 
                         <div class="project-visual visual-one d-flex align-items-center justify-content-center overflow-hidden position-relative">
 
@@ -592,7 +629,13 @@
 
 
                     <!-- APUYA LPG -->
-                    <article class="project-card">
+                    <article
+                        class="project-card"
+                        data-title="APUYA LPG Inventory System"
+                        data-description="Helps manage LPG inventory, sales, payments, and stock movement in one system, reducing the need to track daily operations manually."
+                        data-stack="PHP / MySQL / JavaScript / CSS"
+                        data-status="In progress"
+                    >
 
                         <div class="project-visual visual-two d-flex align-items-center justify-content-center overflow-hidden position-relative">
 
@@ -688,26 +731,32 @@
 
                         <div class="certificate-image">
 
+                            <span class="certificate-index" aria-hidden="true">01</span>
+
                             <img
-                                class="certificate-preview h-100 w-100"
+                                class="certificate-preview"
                                 src="assets/cert1.jpeg"
                                 alt="Certificate from 2026"
                             >
 
+                            <span class="certificate-view-hint" aria-hidden="true">
+                                View &#8599;
+                            </span>
+
                         </div>
 
 
-                        <div>
+                        <div class="certificate-body">
 
                             <h3>
                                 SNYC-IN-TECH
                             </h3>
 
                             <p>
-                                PRAXIS & ITS
+                                PRAXIS &amp; ITS
                             </p>
 
-                            <span>
+                            <span class="certificate-year">
                                 2026
                             </span>
 
@@ -721,26 +770,32 @@
 
                         <div class="certificate-image">
 
+                            <span class="certificate-index" aria-hidden="true">02</span>
+
                             <img
-                                class="certificate-preview h-100 w-100"
+                                class="certificate-preview"
                                 src="assets/cert2.png"
                                 alt="Certificate from 2026"
                             >
 
+                            <span class="certificate-view-hint" aria-hidden="true">
+                                View &#8599;
+                            </span>
+
                         </div>
 
 
-                        <div>
+                        <div class="certificate-body">
 
                             <h3>
-                                dIScover: Navigating Realms of UX/UI  Design
+                                dIScover: Navigating Realms of UX/UI Design
                             </h3>
 
                             <p>
                                 Information System Student Organization (ISSO)
                             </p>
 
-                            <span>
+                            <span class="certificate-year">
                                 2024
                             </span>
 
@@ -753,14 +808,22 @@
 
                         <div class="certificate-image">
 
+                            <span class="certificate-index" aria-hidden="true">03</span>
+
                             <img
-                                class="certificate-preview h-100 w-100"
+                                class="certificate-preview"
                                 src="assets/cert3.png"
-                                alt="Certificate from 2026" >
+                                alt="Certificate from 2026"
+                            >
 
-                            </div>
+                            <span class="certificate-view-hint" aria-hidden="true">
+                                View &#8599;
+                            </span>
 
-                        <div>
+                        </div>
+
+
+                        <div class="certificate-body">
 
                             <h3>
                                 Bicol IT Students Congress (BITSCON)
@@ -770,7 +833,7 @@
                                 CODITE
                             </p>
 
-                            <span>
+                            <span class="certificate-year">
                                 2024
                             </span>
 
@@ -877,6 +940,7 @@
                 <form
                     class="contact-form d-grid w-100"
                     id="contact-form"
+                    novalidate
                 >
 
                     <label for="email">
@@ -1002,7 +1066,114 @@
 
 </footer>
 
+
+<!-- =========================
+     PROJECT MODAL
+========================== -->
+
+<div
+    class="modal fade project-modal"
+    id="projectModal"
+    tabindex="-1"
+    aria-labelledby="projectModalTitle"
+    aria-hidden="true"
+>
+
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+
+        <div class="modal-content">
+
+            <button
+                type="button"
+                class="btn-close project-modal-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+            ></button>
+
+            <div class="project-modal-media" id="projectModalMedia"></div>
+
+            <div class="modal-body project-modal-body">
+
+                <p class="project-modal-eyebrow">
+                    <span id="projectModalIndex">01</span> / Selected work
+                </p>
+
+                <h3 class="project-modal-title" id="projectModalTitle"></h3>
+
+                <p class="project-modal-desc" id="projectModalDesc"></p>
+
+                <div class="project-modal-meta">
+
+                    <div>
+                        <span class="project-modal-label">Stack</span>
+                        <p id="projectModalStack"></p>
+                    </div>
+
+                    <div>
+                        <span class="project-modal-label">Status</span>
+                        <p id="projectModalStatus"></p>
+                    </div>
+
+                </div>
+
+                <div class="project-modal-actions">
+
+                    <a
+                        id="projectModalLink"
+                        class="button button-dark"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        hidden
+                    >
+                        Visit project
+                        <span>&#8599;</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FORM TOAST
+========================== -->
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+    <div
+        class="toast form-toast"
+        id="formToast"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+    >
+
+        <div class="toast-body">
+
+            <span class="toast-dot" aria-hidden="true"></span>
+
+            Message sent! I&rsquo;ll get back to you soon.
+
+        </div>
+
+    </div>
+
+</div>
+
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
 ></script>
-<script src="script.js"></script>       
+<script src="script.js"></script>
+
+</main>
+
+</body>
+
+</html>
